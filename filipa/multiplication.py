@@ -18,9 +18,13 @@ def mul(x, y):
     c = y[:n / 2]
     d = y[n / 2:]
 
-    import pdb; pdb.set_trace()
-
     if len(a) == 1:
-        return 100 * (int(a) * int(c)) + 10 * (int(a) * int(d) + int(b) * int(c)) + int(b) * int(d)
+        ac = int(a) * int(c)
+        ad = int(a) * int(d)
+        bc = int(b) * int(c)
+        bd = int(b) * int(d)
+        return int('%d00' % ac) + int('%d0' % (ad + bc)) + bd
     else:
-        return 10**n * (mul(a, c)) + 10**(n/2) * (mul(a, d) + mul(b, c)) + mul(b, d)
+        factor1 = 10**n
+        factor2 = 10**(n/2)
+        return int('%d%d' % (mul(a, c), factor1)) + int('%d%d' % (mul(a, d) + mul(b, c), factor2)) + mul(b, d)
