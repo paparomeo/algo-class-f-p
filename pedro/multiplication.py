@@ -19,7 +19,8 @@ def mult(x, y):
         n_2 = n >> 1
         x1, x2 = int(sx[:n_2]), int(sx[n_2:])
         y1, y2 = int(sy[:n_2]), int(sy[n_2:])
-        m1 = mult(x1, y1) * 10**n
-        m2 = (mult(x1, y2) + mult(x2, y1)) * 10**n_2
+        n_2_zeros_str = '0' * n_2
+        m1 = int(str(mult(x1, y1)) + n_2_zeros_str + n_2_zeros_str)
+        m2 = int(str(mult(x1, y2) + mult(x2, y1)) + n_2_zeros_str)
         m3 = mult(x2, y2)
         return (m1 + m2 + m3)
