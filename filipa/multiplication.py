@@ -25,6 +25,6 @@ def mul(x, y):
         bd = int(b) * int(d)
         return int('%d00' % ac) + int('%d0' % (ad + bc)) + bd
     else:
-        factor1 = 10**n
-        factor2 = 10**(n/2)
-        return int('%d%d' % (mul(a, c), factor1)) + int('%d%d' % (mul(a, d) + mul(b, c), factor2)) + mul(b, d)
+        factor1 = str(10**n)[1:]
+        factor2 = str(10**(n/2))[1:]
+        return int('%d%s' % (mul(a, c), factor1)) + int('%d%s' % (mul(a, d) + mul(b, c), factor2)) + mul(b, d)
