@@ -2,17 +2,24 @@
 
 # FIXME: initial version of times table cheats because it is using a
 # multiplication
-TIMES_TABLE = { (str(n), str(m)): str(n * m)
-                for n in range(10) for m in range(10) }
+TIMES_TABLE = { (n, m): n * m for n in range(10) for m in range(10) }
 
 
-def multiplication(x, y):
+def mult(x, y):
     """
     Implement the multiplication algorithm recursively.
     """
-    digits = max(len(x), len(y))
+    sx = str(x)
+    sy = str(y)
+    n = max(len(sx), len(sy))
 
-    if digits == 1:  # trivial case
+    if n == 1:  # trivial case
         return TIMES_TABLE[(x, y)]
-    else:
-        raise ValueError('input values with more than one digit unsupported!')
+    else:  # recursive case
+        n_2 = n >> 1
+        x1, x2 = int(sx[:n_2]), int(sx[n_2:])
+        y1, y2 = int(sy[:n_2]), int(sy[n_2:])
+        m1 = mult(x1, y1) * 10**n
+        m2 = (mult(x1, y2) + mult(x2, y1)) * 10**n_2
+        m3 = mult(x2, y2)
+        return (m1 + m2 + m3)
