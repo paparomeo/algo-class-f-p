@@ -8,7 +8,7 @@ def merge_gen(left, right):
     left_values = iter(left)
     right_values = iter(right)
 
-    try: 
+    try:
         left = left_values.next()
     except StopIteration:
         while True:
