@@ -25,13 +25,15 @@ def merge(left, right):
             left_index += 1
         else:
             merged.append(right[right_index])
-            right_index += 1            
+            right_index += 1
 
     # append the remaining of the non-empty sub-sequence
     if left_index < left_length:
         merged.extend(left[left_index:])
     else:
         merged.extend(right[right_index:])
+
+    return merged
 
 
 def merge_sort(numbers):

@@ -3,7 +3,7 @@
 import random
 import unittest
 
-from mergesort import merge, merge_sort
+from invcounter import merge, merge_sort
 
 
 class TestMergeSort(unittest.TestCase):
