@@ -1,30 +1,39 @@
 # encoding:utf-8
 
-def partition(array, pivot):
-    i = j = 1
-    while j < len(array):
+def partition(array, l, r):
+    pivot = array[l]
+    i = j = l + 1
+    while j <= r:
         el = array[j]
         if el < pivot:
             array[i], array[j] = array[j], array[i]
             i += 1
         j += 1
+    
     # Put pivot in its place
-    pivot_place = i - 1
-    array[0], array[pivot_place] = array[pivot_place], array[0]
-    return array[:pivot_place], array[i:]
+    pp = i - 1
+    if pp >= 1:
+        array[l], array[pp] = array[pp], array[l]
+        return l, pp - 1, i, r
+    else:
+        return l, l, i, r
 
 def quicksort(array):
-    n = len(array)
-    if n <= 1:
-        return array
-    else:
-        # Choose a pivot
-        pivot = array[0]
-        # Partition array around pivot
-        left, right = partition(array, pivot)
-        print left, right, array
-        # Recurse on both sides
-        quicksort(left)
-        quicksort(right)
+    """
+    Implements the quick sort algorithm
+    """
+    def quick(array, l, r):
+        n = r - l
+        if n < 1:
+            return array
+        else:
+            # Partition array
+            ll, lr, rl, rr = partition(array, l, r)
+            # Recurse on both sides
+            quick(array, ll, lr)
+            quick(array, rl, rr)
+            return array
 
-    return array
+    # Prepares call to the recursive part
+    n = len(array)
+    return quick(array, 0, n - 1)
