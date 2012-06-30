@@ -1,7 +1,13 @@
 # encoding:utf-8
 
+def first(array, l):
+    try:
+        return array[l]
+    except IndexError:
+        pass
+
 def partition(array, l, r):
-    pivot = array[l]
+    pivot = first(array, l) 
     i = j = l + 1
     while j <= r:
         el = array[j]
