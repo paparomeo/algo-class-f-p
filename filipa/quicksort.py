@@ -1,13 +1,23 @@
 # encoding:utf-8
 
-def first(array, l):
-    try:
-        return array[l]
-    except IndexError:
-        pass
+comparisons = 0
 
+def median(array, l, r):
+    n = r - l
+    middle = n / 2 + l
+    elems = [(array[l], l), (array[middle], middle), (array[r], r)]
+    median = sorted(elems)[1][1]
+    return median
+ 
 def partition(array, l, r):
-    pivot = first(array, l) 
+    global comparisons
+    comparisons += r - l
+    #pi = l
+    #pi = r
+    pi = median(array, l, r)
+    pivot = array[pi] 
+    # Puts pivot in first position
+    array[pi], array[l] = array[l], array[pi]
     i = j = l + 1
     while j <= r:
         el = array[j]
@@ -43,3 +53,10 @@ def quicksort(array):
     # Prepares call to the recursive part
     n = len(array)
     return quick(array, 0, n - 1)
+
+if __name__ == '__main__':
+    # Exercise 2
+    with open('QuickSort.txt') as f:
+        array = [int(line.strip()) for line in f.readlines()]
+        quicksort(array)
+    print comparisons
