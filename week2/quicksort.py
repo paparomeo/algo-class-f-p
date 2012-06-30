@@ -22,7 +22,7 @@ def get_pivot_end(lst, start, end):
     return end
 
 def get_pivot_3median(lst, start, end):
-    middle = int((end - start)/2)
+    middle = (end - start)/2 + start
     ordered = sorted([(lst[end], end), (lst[middle], middle),
         (lst[start], start)])
     median = ordered[1][1]
